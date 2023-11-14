@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package key_value_protos;
+
+service KeyValueService {
+    rpc PutItem(PutItemRequest) returns (PutItemResponse);
+
+    rpc GetItem(GetItemRequest) returns (GetItemResponse);
+
+    rpc DeleteItem(DeleteItemRequest) returns (DeleteItemResponse);
+}
+
+message KeyValuePair {
+    string key = 1;
+    string value = 2;
+}
+
+message PutItemRequest {
+    KeyValuePair item = 1;
+}
+
+message PutItemResponse {
+    KeyValuePair updated_item = 1;
+}
+
+message GetItemRequest {
+    string key = 1;
+}
+
+message GetItemResponse {
+    KeyValuePair item = 1;
+}
+
+message DeleteItemRequest {
+    string key = 1;
+}
+
+message DeleteItemResponse {
+    KeyValuePair item = 1;
+}
