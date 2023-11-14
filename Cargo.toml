@@ -10,11 +10,12 @@ path = "src/rest_proxy.rs"
 
 [[bin]]
 name = "grpc-server"
-path = "src/key_value_service/grpc_service.rs"
+path = "src/grpc_service.rs"
 
 [dependencies]
-warp = "0.3.5"
+warp = "0.3.6"
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 tokio = { version = "1.24", features = ["full"] }
 tokio-stream = { version = "0.1", features = ["net"] }
 http = "0.2.5"
@@ -22,7 +23,6 @@ sha256 = "1.2.2"
 dashmap = "5.5.3"
 tonic = "0.8"
 prost = "0.11"
-futures = "0.3"
 clap = { version = "4.1.4", features = ["derive"] }
 tonic-reflection = "0.6.0"
 

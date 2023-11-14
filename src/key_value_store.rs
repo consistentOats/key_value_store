@@ -12,12 +12,12 @@ impl KeyValueStore {
         KeyValueStore { store: Arc::new(DashMap::new()) }
     }
 
-    pub fn put(self, key: String, value: String) -> Result<(String, String), KeyNotFoundError> {
+    pub fn put(&self, key: String, value: String) -> (String, String) {
         self.store.insert(key.clone(), value.clone()); // this operation replaces the prexisting value if there was one
-        Ok((key, value))
+        (key, value)
     }
 
-    pub fn get(self, key: String) -> Result<(String, String), KeyNotFoundError> {
+    pub fn get(&self, key: String) -> Result<(String, String), KeyNotFoundError> {
         if let Some(value) = self.store.get(&key) {
             Ok((key, value.clone()))
         } else { 
@@ -25,7 +25,7 @@ impl KeyValueStore {
         }
     }
 
-    pub fn delete(self, key: String) -> Result<(String, String), KeyNotFoundError> {
+    pub fn delete(&self, key: String) -> Result<(String, String), KeyNotFoundError> {
         if let Some(key_value_pair) = self.store.remove(&key) {
             Ok(key_value_pair)
         } else {
@@ -36,6 +36,6 @@ impl KeyValueStore {
 
 #[derive(Debug, Clone)]
 pub struct KeyNotFoundError {
-    key: String
+    pub key: String
 }
 
