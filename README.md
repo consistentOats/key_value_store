@@ -32,9 +32,12 @@ This project contains a gRPC service used for accessing a simple data store, alo
 
 To test this project, you can make requests to the REST proxy service either by using the included postman collections or by making curl requests to the following enpoints:
 
-PUT localhost:8080/store/item (with the body {"key": "hello", "value": "world"})
+PUT localhost:8080/store/item (with the body {"key": <:key>, "value": <:value>})
+> example curl command `curl -X PUT localhost:8080/store/item -H "Content-Type: application/json" -d '{"key": "hello", "value": "world"}'`
 
-GET localhost:8080/store/items/:key
+GET localhost:8080/store/items/<:key>
+> example curl command `curl -X GET localhost:8080/store/items/hello`
 
-DELETE localhost:8080/store/items/:key
+DELETE localhost:8080/store/items/<:key>
+> example curl command `curl -X DELETE localhost:8080/store/items/hello`
 
